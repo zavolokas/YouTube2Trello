@@ -49,7 +49,7 @@ def _get_videos(uploads_playlist_id, youtube):
         if len(playlist_items) < 1:
             break
 
-        video_ids = playlist_items[0]
+        video_ids = playlist_items[0]["snippet"]["resourceId"]["videoId"]
         for playlist_item in playlist_items[1:]:
             video_id = playlist_item["snippet"]["resourceId"]["videoId"]
             video_ids = f"{video_ids},{video_id}"
