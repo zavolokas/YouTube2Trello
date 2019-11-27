@@ -10,9 +10,9 @@ def get_worth_score(video):
     dislikes = float(video.stats.dislikes)
     views = float(video.stats.views)
 
-    lpd = float(likes) / days
-    fpd = float(favs) / days
-    dpd = float(dislikes) / days
+    lpd = likes / days
+    fpd = favs / days
+    dpd = dislikes / days
 
     total_ratings = lpd + fpd + dpd
     lds = ((lpd + fpd - dpd) / total_ratings + 1) / 2 if total_ratings > 0.0 else 0.0
