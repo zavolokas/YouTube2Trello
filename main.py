@@ -83,3 +83,12 @@ if __name__ == "__main__":
         board_list_name = f"{pl.name} {publish_year}"
         videos = filter(lambda v: v.published.year == publish_year, pl.videos)
         create_list(list(videos), trello_board, board_list_name)
+
+
+
+df1 = spark.createDataFrame([{"id": 1, "name": "John", "data": {"a1": 0.2, "a2": 0.5}}, {"id": 2, "name": "Keith", "data": {"a1": 0.52, "a2": 0.15}}, {"id": 3, "name": "Bob", "data": {"a1": 0.9, "a2": 0.4}}, {"id": 4, "name": "Mikle", "data": {"a1": 0.01, "a2": 0.7}}])
+df2 = spark.createDataFrame([{"id": 1, "age": 12, "more": {"height": 23}},{"id": 2, "age": 23, "more": {"height": 32}},{"id": 3, "age": 45, "more": {"height": 11}},{"id": 4, "age": 23, "more": {"height": 30}}])
+
+
+df1m = df1.groupBy("id").agg(F.first(F.struct(*df1.columns)).alias("df1"))
+df2m = df2.groupBy("id").agg(F.first(F.struct(*df2.columns)).alias("df2"))
